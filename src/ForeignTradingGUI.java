@@ -19,7 +19,7 @@ public class ForeignTradingGUI {
 
     private void connectDatabase() {
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/foreign_trading", "root", "pass123");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "");
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Database Connection Failed!", "Error", JOptionPane.ERROR_MESSAGE);
