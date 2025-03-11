@@ -1,23 +1,23 @@
 # ForeignTradingSystem
 # MY SQL DATABASE CREATION
 
-CREATE DATABASE foreign_trading;
+CREATE DATABASE IF NOT EXISTS foreign_trading;
 USE foreign_trading;
 
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
+    password VARCHAR(50) NOT NULL,
     balance DOUBLE DEFAULT 1000.0
 );
 
-CREATE TABLE transactions (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    currency VARCHAR(10),
-    amount DOUBLE,
-    price DOUBLE,
-    transaction_type ENUM('BUY', 'SELL'),
+CREATE TABLE IF NOT EXISTS transactions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    currency VARCHAR(10) NOT NULL,
+    amount DOUBLE NOT NULL,
+    price DOUBLE NOT NULL,
+    transaction_type ENUM('BUY', 'SELL') NOT NULL,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
